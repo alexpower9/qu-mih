@@ -1,6 +1,6 @@
 <template>
   <img alt="Bobcat" src="./assets/newBobcat.jpeg" class="img">
-  <MyBobcat msg="Welcome to the Quinnipiac Men's Ice Hockey Plays."></MyBobcat>
+  <MyBobcat class="welcome-message" msg="Welcome to the Quinnipiac Men's Ice Hockey Plays!"></MyBobcat>
 </template>
 
 <script>
@@ -23,10 +23,13 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 40px;
 }
 .img {
-  width: 100px;
-  height: 100px;
+  width: 75px;
+  height: 75px;
+}
+.welcome-message {
+  font-size: 14px;
 }
 </style>
