@@ -1,15 +1,17 @@
 <template>
-  <img alt="Vue logo" src="./assets/bobcat.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <img alt="Bobcat" src="./assets/newBobcat.jpeg" class="img">
+  <MyBobcat msg="Welcome to the Quinnipiac Men's Ice Hockey Plays."></MyBobcat>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+//import HelloWorld from './components/HelloWorld.vue'
+import MyBobcat from './components/MyBobcat.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    //HelloWorld
+    MyBobcat
   }
 }
 </script>
@@ -22,5 +24,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.img {
+  width: 100px;
+  height: 100px;
 }
 </style>
