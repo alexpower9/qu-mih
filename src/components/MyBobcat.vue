@@ -1,9 +1,6 @@
 <template>
     <div class="bobcat">
         <h1>{{ msg }}</h1>
-        <p>This page is going to be the quinnipiac bobcats
-            For more info on us, check out <a href="https://cli.vuejs.org" target="_blank" rel="noopener">roster</a>.
-        </p>
     </div>
 </template>
 
