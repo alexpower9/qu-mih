@@ -1,20 +1,6 @@
 <template>
-  <img alt="Bobcat" src="./assets/newBobcat.jpeg" class="img">
-  <MyBobcat class="welcome-message" msg="Welcome to the Quinnipiac Men's Ice Hockey Plays!"></MyBobcat>
+  <router-view/>
 </template>
-
-<script>
-//import HelloWorld from './components/HelloWorld.vue'
-import MyBobcat from './components/MyBobcat.vue'
-
-export default {
-  name: 'App',
-  components: {
-    //HelloWorld
-    MyBobcat
-  }
-}
-</script>
 
 <style>
 #app {
@@ -23,13 +9,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 40px;
 }
-.img {
-  width: 75px;
-  height: 75px;
+
+nav {
+  padding: 30px;
 }
-.welcome-message {
-  font-size: 14px;
+
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
