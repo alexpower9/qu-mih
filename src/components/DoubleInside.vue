@@ -1,12 +1,18 @@
+<!-- This is just the button on the homepage-->
 <template>
-    <div class="button-container">
+    <div class="button-container" @click="naviagte">
       <p class="button-text">Double Inside</p>
     </div>
 </template>
-  
+
 <script>
   export default {
-    name: 'DoubleInside'
+    name: 'DoubleInside',
+    methods: {
+      naviagte() {
+        this.$router.push('/double-inside')
+      }
+    }
   }
 </script>
   
