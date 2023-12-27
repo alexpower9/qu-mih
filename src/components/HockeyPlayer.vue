@@ -1,6 +1,8 @@
 <template>
-    <div class="player" :class="{'team-1': team === 1, 'team-2': team === 2}">
-        <VueCustomTooltip :label="tooltipText" class="custom-tooltip">
+    <div class="player" 
+       :class="{'team-1': team === 1, 'team-2': team === 2}" 
+       :style="{ top: top + '%', left: left + '%', position: 'absolute', transform: 'translate(-50%, -50%)' }">
+        <VueCustomTooltip :label="tooltipText">
             <p>{{ position }}</p>
         </VueCustomTooltip>
     </div>
@@ -21,6 +23,14 @@ export default {
         tooltipText: {
             type: String,
             required: true
+        },
+        top: {
+            type: Number,
+            required: true
+        },
+        left: {
+            type: Number,
+            required: true
         }
     }
 }
@@ -36,8 +46,5 @@ export default {
 }
 .team-2{
     color: #ec0229;
-}
-.custom-tooltip{
-    z-index: 10000 !important;
 }
 </style>
