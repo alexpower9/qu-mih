@@ -1,7 +1,10 @@
 <template>
     <div class="button-container">
-        <button class="play-button" @click="onClick">
-            Play
+        <button class="play-win-button" @click="onPlayWin">
+            Play Win
+        </button>
+        <button class="play-loss-button" @click="onPlayLoss">
+            Play Loss
         </button>
         <button class="reset-button" @click="onReset">
             Reset
@@ -16,8 +19,11 @@
     export default {
         name: 'RinkWithButtons',
         methods: {
-            onClick() {
-                this.$emit('play');
+            onPlayWin() {
+                this.$emit('play-win');
+            },
+            onPlayLoss() {
+                this.$emit('play-loss');
             },
             onReset() {
                 this.$emit('reset');
@@ -38,7 +44,7 @@
     height: auto;
     max-width: 100%;
 }
-.play-button, .reset-button {
+.play-win-button,.play-loss-button, .reset-button {
     background-color: #1a4386;
   border: none;
   color: white;
@@ -51,7 +57,7 @@
   border-radius: 12px;
   transition-duration: 0.3s;
 }
-.play-button:hover, .reset-button:hover {
+.play-win-button:hover,.play-loss-button:hover, .reset-button:hover {
   background-color: #3468a4;
 }
 .button-container {
@@ -61,6 +67,6 @@
   transform: translateX(-50%);
   display: flex;
   justify-content: space-between;
-  width: 250px; /* Adjust as needed */
+  width: 400px; /* Adjust as needed */
 }
 </style>
