@@ -1,9 +1,14 @@
 <template>
     <div class="button-container">
-        <button class="play-win-button" @click="onPlayWin">
+        <button :disabled="isDisabled" class="play-win-button" @click="onPlayWin">
             Play Win
         </button>
-        <button class="play-loss-button" @click="onPlayLoss">
+        <VueCustomTooltip v-if="tooltipText" :label="tooltipText">
+            <button :disabled="isDisabled" class="play-loss-button" @click="onPlayLoss">
+                Play Loss
+            </button>
+        </VueCustomTooltip>
+        <button :disabled="isDisabled" v-else class="play-loss-button" @click="onPlayLoss">
             Play Loss
         </button>
         <button class="reset-button" @click="onReset">
@@ -16,20 +21,37 @@
 </template>
 
 <script>
+import { VueCustomTooltip } from '@adamdehaven/vue-custom-tooltip';
+
     export default {
-        name: 'RinkWithButtons',
-        methods: {
-            onPlayWin() {
-                this.$emit('play-win');
-            },
-            onPlayLoss() {
-                this.$emit('play-loss');
-            },
-            onReset() {
-                this.$emit('reset');
-            }
+    name: 'RinkWithButtons',
+    data() {
+        return {
+            isDisabled: false
         }
-    }
+    },
+    props: {
+        tooltipText: {
+            type: String,
+            required: true
+        }
+    },
+    methods: {
+        onPlayWin() {
+            this.isDisabled = true;
+            this.$emit('play-win');
+        },
+        onPlayLoss() {
+            this.isDisabled = true;
+            this.$emit('play-loss');
+        },
+        onReset() {
+            this.isDisabled = false;
+            this.$emit('reset');
+        }
+    },
+    components: { VueCustomTooltip }
+}
 </script>
 
 <style scoped>
@@ -62,7 +84,7 @@
 }
 .button-container {
   position: absolute;
-  top: 30px;
+  top: 37px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
