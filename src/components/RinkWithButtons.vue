@@ -33,9 +33,10 @@ import { VueCustomTooltip } from '@adamdehaven/vue-custom-tooltip';
     props: {
         tooltipText: {
             type: String,
-            required: true
+            required: false
         }
     },
+    emits: ['reset', 'play-win', 'play-loss'],
     methods: {
         onPlayWin() {
             this.isDisabled = true;
