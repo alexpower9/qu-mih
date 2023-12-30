@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import DoubleInsideView from '../views/DoubleInsideView.vue'
+import DoriaView from '../views/DoriaView.vue'
+import CashSotieView from '../views/CashSotieView.vue'
 
 const routes = [
   {
@@ -20,6 +22,16 @@ const routes = [
     path: '/double-inside',
     name: 'double-inside',
     component: DoubleInsideView
+  },
+  {
+    path: '/doria',
+    name: 'doria',
+    component: DoriaView
+  },
+  {
+    path: '/cash-sotie',
+    name: 'cash-sotie',
+    component: CashSotieView
   }
 ]
 

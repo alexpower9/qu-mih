@@ -2,8 +2,10 @@
   <div class="home">
     <img class="bobcat-image" alt="Bobcat" src="../assets/newBobcat.jpeg">
     <MyBobcat class="welcome-message" msg="Welcome to the Quinnipiac Mens Ice Hockey Play Page!"></MyBobcat>
-    <div class = "button-container">
-      <DoubleInside></DoubleInside>
+    <div class = "play-button-container">
+      <PlaysButton imagePath="button-background.png" buttonText="Double Inside" route="/double-inside"></PlaysButton>
+      <PlaysButton imagePath="button-background.png" buttonText="Doria" route="/doria"></PlaysButton>
+      <PlaysButton imagePath="button-background.png" buttonText="Cash Sotie" route="/cash-sotie"></PlaysButton>
     </div>
   </div>
 </template>
@@ -11,13 +13,13 @@
 <script>
 // @ is an alias to /src
 import MyBobcat from '@/components/MyBobcat.vue'
-import DoubleInside from '@/components/DoubleInside.vue'
+import PlaysButton from '@/components/PlaysButton.vue'
 
 export default {
   name: 'HomeView',
   components: {
     MyBobcat,
-    DoubleInside
+    PlaysButton
   }
 }
 </script>
@@ -27,9 +29,13 @@ export default {
   width: 75px;
   height: 75px;
 }
-.button-container{
-  margin-left:auto;
-  margin-right:auto;
+.play-button-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 </style>
 

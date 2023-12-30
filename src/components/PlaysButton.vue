@@ -1,21 +1,22 @@
-<!-- This is just the button on the homepage-->
 <template>
-    <div class="button-container" @click="naviagte">
-      <p class="button-text">Double Inside</p>
+    <div class="button-container" @click="naviagte" :style="{ '--background-image': 'url(' + require('@/assets/' + imagePath) + ')' }">
+      <p class="button-text">{{ buttonText }}</p>
     </div>
 </template>
 
 <script>
-  export default {
-    name: 'DoubleInside',
+export default
+{
+    name: "PlaysButton",
+    props: ['imagePath','buttonText','route'],
     methods: {
       naviagte() {
-        this.$router.push('/double-inside')
+        this.$router.push(this.route)
       }
-    } 
-  }
+    }
+}
 </script>
-  
+
 <style scoped>
 .button-container {
   position: relative;
@@ -37,7 +38,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: url('../assets/button-background.png') no-repeat center center; /* adjust the path as needed */
+  background: var(--background-image) no-repeat center center; /* adjust the path as needed */
   background-size: cover;
   opacity: 0.5; /* adjust as needed */
   z-index: -1;
@@ -56,4 +57,5 @@
 .button-container:hover .button-text {
   transform: scale(1.05); /* adjust as needed */
 }
+
 </style>

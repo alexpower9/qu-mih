@@ -3,18 +3,18 @@
         <RinkWithButtons :tooltipText="'This is for an ID play being run'" @reset="resetPlayers" @play-win="onPlayWin" @play-loss="onPlayLoss"></RinkWithButtons>
     </div>
         <div class="team-1">
-            <HockeyPlayer :position="'RW'" :team="1" :tooltipText="'Quick shot! It is important to note that the LW and RW are interchangable, depending on the handedness of the player'" :top="playerPositions.team1.RW.top" :left="playerPositions.team1.RW.left" class="team-1-RW"></HockeyPlayer>
-            <HockeyPlayer ref="player" :position="'LW'" :team="1" :tooltipText="'Win the pocket.'" :top="playerPositions.team1.LW.top" :left="playerPositions.team1.LW.left" class="team-1-LW"></HockeyPlayer>
-            <HockeyPlayer :position="'C'" :team="1" :tooltipText="'Win the draw to the inside forward.'" :top="playerPositions.team1.C.top" :left="playerPositions.team1.C.left" class="team-1-C"></HockeyPlayer>
-            <HockeyPlayer :position="'LD'" :team="1" :tooltipText="'Play hockey.'" :top="playerPositions.team1.LD.top" :left="playerPositions.team1.LD.left" class="team-1-LD"></HockeyPlayer>
-            <HockeyPlayer :position="'RD'" :team="1" :tooltipText="'Win the pocket, if the face-off is lost cleanly, back off.'" :top="playerPositions.team1.RD.top" :left="playerPositions.team1.RD.left" class="team-1-RD"></HockeyPlayer>
+            <HockeyPlayer :position="'RW'" :team="1" :tooltipText="tooltipsActive ? 'Quick shot! It is important to note that the LW and RW are interchangable, depending on the handedness of the player' : ''" :top="playerPositions.team1.RW.top" :left="playerPositions.team1.RW.left" class="team-1-RW"></HockeyPlayer>
+            <HockeyPlayer :position="'LW'" :team="1" :tooltipText="tooltipsActive ? 'Win the pocket.' : ''" :top="playerPositions.team1.LW.top" :left="playerPositions.team1.LW.left" class="team-1-LW"></HockeyPlayer>
+            <HockeyPlayer :position="'C'" :team="1" :tooltipText="tooltipsActive ? 'Win the draw to the inside forward.' : ''" :top="playerPositions.team1.C.top" :left="playerPositions.team1.C.left" class="team-1-C"></HockeyPlayer>
+            <HockeyPlayer :position="'LD'" :team="1" :tooltipText="tooltipsActive ? 'Play hockey.' : ''" :top="playerPositions.team1.LD.top" :left="playerPositions.team1.LD.left" class="team-1-LD"></HockeyPlayer>
+            <HockeyPlayer :position="'RD'" :team="1" :tooltipText="tooltipsActive ? 'Win the pocket, if the face-off is lost cleanly, back off.' : ''" :top="playerPositions.team1.RD.top" :left="playerPositions.team1.RD.left" class="team-1-RD"></HockeyPlayer>
         </div>
         <div class="team-2">
-            <HockeyPlayer :position="'C'" :team="2" :tooltipText="'A common defensive play call against the DI would be ID, but the puck can also be won to the LW corner.'" :top="playerPositions.team2.C.top" :left="playerPositions.team2.C.left" class="team-2-C"></HockeyPlayer>
-            <HockeyPlayer :position="'LW'" :team="2" :tooltipText="'Win the pocket, be ready to make a play if the puck gets won to your corner.'" :top="playerPositions.team2.LW.top" :left="playerPositions.team2.LW.left" class="team-2-LW"></HockeyPlayer>
-            <HockeyPlayer :position="'RW'" :team="2" :tooltipText="'Hold.'" :top="playerPositions.team2.RW.top" :left="playerPositions.team2.RW.left" class="team-2-RW"></HockeyPlayer>
-            <HockeyPlayer :position="'RD'" :team="2" :tooltipText="'Win the pocket.'" :top="playerPositions.team2.RD.top" :left="playerPositions.team2.RD.left" class="team-2-RD"></HockeyPlayer>
-            <HockeyPlayer :position="'LD'" :team="2" :tooltipText="'Be ready for the puck off the face-off, and also be prepared to help with the shot-block'" :top="playerPositions.team2.LD.top" :left="playerPositions.team2.LD.left" :class="{ 'win-animation': isWin }" class="team-2-LD"></HockeyPlayer>
+            <HockeyPlayer :position="'C'" :team="2" :tooltipText="tooltipsActive ? 'A common defensive play call against the DI would be ID, but the puck can also be won to the LW corner.' : ''" :top="playerPositions.team2.C.top" :left="playerPositions.team2.C.left" class="team-2-C"></HockeyPlayer>
+            <HockeyPlayer :position="'LW'" :team="2" :tooltipText="tooltipsActive ? 'Win the pocket, be ready to make a play if the puck gets won to your corner.' : ''" :top="playerPositions.team2.LW.top" :left="playerPositions.team2.LW.left" class="team-2-LW"></HockeyPlayer>
+            <HockeyPlayer :position="'RW'" :team="2" :tooltipText="tooltipsActive ? 'Hold.' : ''" :top="playerPositions.team2.RW.top" :left="playerPositions.team2.RW.left" class="team-2-RW"></HockeyPlayer>
+            <HockeyPlayer :position="'RD'" :team="2" :tooltipText="tooltipsActive ? 'Win the pocket.' : ''" :top="playerPositions.team2.RD.top" :left="playerPositions.team2.RD.left" class="team-2-RD"></HockeyPlayer>
+            <HockeyPlayer :position="'LD'" :team="2" :tooltipText="tooltipsActive ? 'Be ready for the puck off the face-off, and also be prepared to help with the shot-block' : ''" :top="playerPositions.team2.LD.top" :left="playerPositions.team2.LD.left" :class="{ 'win-animation': isWin }" class="team-2-LD"></HockeyPlayer>
         </div>
         <HockeyPuck :top="puckLocation.top" :left="puckLocation.left" :class="{ 'puck-win-animation': puckWinAnimation }" class="puck"></HockeyPuck>
 </template>
@@ -29,6 +29,7 @@ export default {
     components: { RinkWithButtons, HockeyPlayer, HockeyPuck},
     data() {
         return{
+            tooltipsActive: true,
             puckLocation: {
                 top: 50.25,
                 left: 31.14
@@ -81,10 +82,11 @@ export default {
                     }
                 }
             }
-        }
+        }   
     },
     methods: {
         resetPlayers() {
+
             this.playerPositions = {
                 team1: {
                 RW: { top: 37, left: 35.9 },
@@ -102,6 +104,7 @@ export default {
             }
           };
           this.puckLocation = { top: 50.25, left: 31.14 };
+          this.tooltipsActive = true;
         },
         animateTeam2LD(){
             const start = { top: this.playerPositions.team2.LD.top, left: this.playerPositions.team2.LD.left };
@@ -131,6 +134,7 @@ export default {
         onPlayWin(){
             this.isWin = true; //handles the LD animation, as they are different if the play is won or lost
             this.puckWinAnimation = true;
+            this.tooltipsActive = false;
             
             //first, move the puck
             this.puckLocation.top = 38.7;
@@ -160,6 +164,8 @@ export default {
         onPlayLoss(){
             this.isWin = false; //handles the LD animation, as they are different if the play is won or lost
             this.puckWinAnimation = true;
+            this.tooltipsActive = false;
+
             this.puckLocation.top = 59;
             this.puckLocation.left = 38;
             setTimeout(() => {
