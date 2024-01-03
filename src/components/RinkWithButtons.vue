@@ -1,14 +1,19 @@
 <template>
     <div class="button-container">
-        <button :disabled="isDisabled" class="play-win-button" @click="onPlayWin">
+        <VueCustomTooltip v-if="toolTipTextWin" :label="toolTipTextWin">
+            <button :disabled="isDisabled" class="play-win-button" @click="onPlayWin">
+                Play Win
+            </button>
+        </VueCustomTooltip>
+        <button :disabled="isDisabled" v-else class="play-win-button" @click="onPlayWin">
             Play Win
         </button>
         <VueCustomTooltip v-if="tooltipText" :label="tooltipText">
-            <button :disabled="isDisabled" class="play-loss-button" @click="onPlayLoss">
+            <button :disabled="isDisabledLoss" class="play-loss-button" @click="onPlayLoss">
                 Play Loss
             </button>
         </VueCustomTooltip>
-        <button :disabled="isDisabled" v-else class="play-loss-button" @click="onPlayLoss">
+        <button :disabled="isDisabledLoss" v-else class="play-loss-button" @click="onPlayLoss">
             Play Loss
         </button>
         <button class="reset-button" @click="onReset">
@@ -27,11 +32,16 @@ import { VueCustomTooltip } from '@adamdehaven/vue-custom-tooltip';
     name: 'RinkWithButtons',
     data() {
         return {
-            isDisabled: false
+            isDisabled: false,
+            isDisabledLoss: false
         }
     },
     props: {
         tooltipText: {
+            type: String,
+            required: false
+        },
+        toolTipTextWin: {
             type: String,
             required: false
         }
