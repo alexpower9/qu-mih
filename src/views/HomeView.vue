@@ -6,6 +6,7 @@
       <PlaysButton imagePath="button-background.png" buttonText="Double Inside" route="/double-inside"></PlaysButton>
       <PlaysButton imagePath="button-background.png" buttonText="Doria" route="/doria"></PlaysButton>
       <PlaysButton imagePath="button-background.png" buttonText="Cash Sotie" route="/cash-sotie"></PlaysButton>
+      <PlaysButton imagePath="button-background.png" buttonText="Princeton" route="/princeton"></PlaysButton>
     </div>
   </div>
 </template>
@@ -35,7 +36,9 @@ export default {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  width: 700px;
   gap: 20px;
+  margin:auto;
 }
 </style>
 

@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import DoubleInsideView from '../views/DoubleInsideView.vue'
 import DoriaView from '../views/DoriaView.vue'
 import CashSotieView from '../views/CashSotieView.vue'
+import PrincetonView from '../views/PrincetonView.vue'
 
 const routes = [
   {
@@ -32,6 +33,11 @@ const routes = [
     path: '/cash-sotie',
     name: 'cash-sotie',
     component: CashSotieView
+  },
+  {
+    path: '/princeton',
+    name: 'princeton',
+    component: PrincetonView
   }
 ]
 
