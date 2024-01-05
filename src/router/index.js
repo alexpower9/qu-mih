@@ -5,6 +5,7 @@ import DoriaView from '../views/DoriaView.vue'
 import CashSotieView from '../views/CashSotieView.vue'
 import PrincetonView from '../views/PrincetonView.vue'
 import TwentyOneView from '../views/TwentyOneView.vue'
+import FloodStrandView from '../views/FloodStrandView.vue'
 
 const routes = [
   {
@@ -44,6 +45,11 @@ const routes = [
     path: '/twenty-one',
     name: 'twenty-one',
     component: TwentyOneView
+  },
+  {
+    path: '/flood-strand',
+    name: 'flood-strand',
+    component: FloodStrandView
   }
   
 ]
