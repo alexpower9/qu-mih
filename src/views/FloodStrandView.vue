@@ -3,7 +3,7 @@
     <!--Team 1-->
     <HockeyPlayer :position="'RW'" :team="1" :tooltipText="tooltipsActive ? 'Roll into the top of the circle.' : ''" :top="playerPositions.team1.RW.top" :left="playerPositions.team1.RW.left" class="team-1-RW"></HockeyPlayer>
     <HockeyPlayer :position="'LW'" :team="1" :tooltipText="tooltipsActive ? 'Get around the bottom of the circle for a pass from the RD.' : ''" :top="playerPositions.team1.LW.top" :left="playerPositions.team1.LW.left" class="team-1-LW"></HockeyPlayer>
-    <HockeyPlayer :position="'C'" :team="1" :tooltipText="tooltipsActive ? 'Win the draw to the RD.' : ''" :top="playerPositions.team1.C.top" :left="playerPositions.team1.C.left" class="team-1-C"></HockeyPlayer>
+    <HockeyPlayer :position="'C'" :team="1" :tooltipText="tooltipsActive ? 'Win the draw to the RD, get the net.' : ''" :top="playerPositions.team1.C.top" :left="playerPositions.team1.C.left" class="team-1-C"></HockeyPlayer>
     <HockeyPlayer :position="'LD'" :team="1" :tooltipText="tooltipsActive ? 'Widen out and down.' : ''" :top="playerPositions.team1.LD.top" :left="playerPositions.team1.LD.left" class="team-1-LD"></HockeyPlayer>
     <HockeyPlayer :position="'RD'" :team="1" :tooltipText="tooltipsActive ? 'Get the puck and walk slightly to the middle.' : ''" :top="playerPositions.team1.RD.top" :left="playerPositions.team1.RD.left" class="team-1-RD"></HockeyPlayer>
     <!-- Team 2 -->
@@ -91,7 +91,91 @@ export default {
 
             //move the LW out to the RD
             this.playerPositions.team2.LW = {top : this.playerPositions.team1.RD.top + 4, left: this.playerPositions.team1.RD.left + 2};
+
+            //move the LW
+            this.animateTeam1LW();
+            this.animateTeam2RD();
+            this.animateTeam1RW();
+
+            setTimeout(() => {
+               this.puckLocation = {top: this.playerPositions.team1.LW.top, left: this.playerPositions.team1.LW.left};
+            }, 1000);
         }, 300);
+        
+    },
+    animateTeam1LW()
+    {
+        //this will also animate the team 2 LD
+        const start = { top: this.playerPositions.team1.LW.top, left: this.playerPositions.team1.LW.left };
+        const control = { top: 65, left: 30 }; //change the shape of the curve
+        const end = { top: this.playerPositions.team2.LD.top + 3, left: this.playerPositions.team2.LD.left + 1 };
+        let t = 0;
+
+        const animation = () => {
+            const top = Math.pow(1 - t, 2) * start.top + 2 * (1 - t) * t * control.top + Math.pow(t, 2) * end.top;
+            const left = Math.pow(1 - t, 2) * start.left + 2 * (1 - t) * t * control.left + Math.pow(t, 2) * end.left;
+
+
+            this.playerPositions.team1.LW.top = top;
+            this.playerPositions.team1.LW.left = left;
+
+            t += 0.007; //will change the speed
+
+            if (t <= 1) {
+                requestAnimationFrame(animation);
+            }
+        };
+        animation();
+    },
+    animateTeam2RD()
+    {
+        //this will also animate the team 2 LD
+        const start = { top: this.playerPositions.team2.RD.top, left: this.playerPositions.team2.RD.left };
+        const control = { top: 65, left: 30 }; //change the shape of the curve
+        const end = { top: this.playerPositions.team2.LD.top + 6, left: this.playerPositions.team2.LD.left + 3 };
+        let t = 0;
+
+        const animation = () => {
+            const top = Math.pow(1 - t, 2) * start.top + 2 * (1 - t) * t * control.top + Math.pow(t, 2) * end.top;
+            const left = Math.pow(1 - t, 2) * start.left + 2 * (1 - t) * t * control.left + Math.pow(t, 2) * end.left;
+
+
+            this.playerPositions.team2.RD.top = top;
+            this.playerPositions.team2.RD.left = left;
+
+            t += 0.007; //will change the speed
+
+            if (t <= 1) {
+                requestAnimationFrame(animation);
+            }
+        };
+        animation();
+    },
+    animateTeam1RW()
+    {
+        const start = { top: this.playerPositions.team1.RW.top, left: this.playerPositions.team1.RW.left };
+        const control = { top: 30, left: 30 }; //change the shape of the curve
+        const end = { top: this.playerPositions.team1.C.top - 12, left: this.playerPositions.team1.C.left};
+        let t = 0;
+
+        const animation = () => {
+            const top = Math.pow(1 - t, 2) * start.top + 2 * (1 - t) * t * control.top + Math.pow(t, 2) * end.top;
+            const left = Math.pow(1 - t, 2) * start.left + 2 * (1 - t) * t * control.left + Math.pow(t, 2) * end.left;
+
+
+            this.playerPositions.team1.RW.top = top;
+            this.playerPositions.team1.RW.left = left;
+
+            this.playerPositions.team2.LD.top = top + 8;
+            this.playerPositions.team2.LD.left = left
+
+            t += 0.007; //will change the speed
+
+            if (t <= 1) {
+                requestAnimationFrame(animation);
+            }
+        };
+        animation();
     }
   }
 }
