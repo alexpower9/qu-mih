@@ -7,6 +7,7 @@ import PrincetonView from '../views/PrincetonView.vue'
 import TwentyOneView from '../views/TwentyOneView.vue'
 import FloodStrandView from '../views/FloodStrandView.vue'
 import BoueyView from '../views/BoueyView.vue'
+import NiagaraView from '../views/NiagaraView.vue'
 
 const routes = [
   {
@@ -56,6 +57,11 @@ const routes = [
     path: '/bouey',
     name: 'bouey',
     component: BoueyView
+  },
+  {
+    path: '/niagara',
+    name: 'niagara',
+    component: NiagaraView
   }
 ]
 
