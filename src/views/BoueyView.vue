@@ -73,6 +73,7 @@ export default {
         this.puckWinAnimation = false;
         },
         onPlayWin() {
+            this.tooltipsActive = false;
             this.puckWinAnimation = true;
             this.puckLocation = this.playerPositions.team1.LD;
 
