@@ -6,6 +6,7 @@ import CashSotieView from '../views/CashSotieView.vue'
 import PrincetonView from '../views/PrincetonView.vue'
 import TwentyOneView from '../views/TwentyOneView.vue'
 import FloodStrandView from '../views/FloodStrandView.vue'
+import BoueyView from '../views/BoueyView.vue'
 
 const routes = [
   {
@@ -50,8 +51,12 @@ const routes = [
     path: '/flood-strand',
     name: 'flood-strand',
     component: FloodStrandView
+  },
+  {
+    path: '/bouey',
+    name: 'bouey',
+    component: BoueyView
   }
-  
 ]
 
 const router = createRouter({
