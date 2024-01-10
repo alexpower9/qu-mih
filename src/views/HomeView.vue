@@ -11,6 +11,7 @@
       <PlaysButton imagePath="button-background.png" buttonText="Floodstrand" route="/flood-strand"></PlaysButton>
       <PlaysButton imagePath="button-background.png" buttonText="Bouey" route="/bouey"></PlaysButton>
       <PlaysButton imagePath="button-background.png" buttonText="Niagara" route="/niagara"></PlaysButton>
+      <PlaysButton imagePath="button-background.png" buttonText="Pitt" route="/pitt"></PlaysButton>
     </div>
   </div>
 </template>
