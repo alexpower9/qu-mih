@@ -98,6 +98,7 @@ export default {
         onPlayLoss() {
             this.isDisabled = true;
             this.$emit('play-loss');
+            //emits a loss
         },
         onReset() {
             this.isDisabled = false;
