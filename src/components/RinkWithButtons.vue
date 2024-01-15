@@ -123,7 +123,7 @@ export default {
 
 .rink-image{
     height: auto;
-    width: 1330px;
+    width:80%;
     position: relative;
     display: block;
 }
