@@ -115,7 +115,8 @@ export default {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
+    height: 85vh;
+    margin-top: 10vh;
 }
 
 .rink-background{
@@ -157,21 +158,8 @@ export default {
   margin-top: 4vh;
 }
 
-@media screen and (min-width: 1358px) {
-    .rink-image{
-        width: 70vw;
-    }
-}
-
-@media screen and (min-width: 908px) and (max-width: 1357px) {
-    .rink-image{
-        width: 60vw; /* Use vw instead of px */
-    }
-}
-
-@media screen and (max-width: 907px) {
-    .rink-image{
-        width: 50vw;
-    }
+.rink-image{
+    width: 70vw;
+    height: 80vh;
 }
 </style>
