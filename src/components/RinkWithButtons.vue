@@ -113,6 +113,7 @@ export default {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    height: 100vh;
 }
 
 .rink-background{
@@ -123,7 +124,7 @@ export default {
 
 .rink-image{
     height: auto;
-    width:80%;
+    width:70vw;
     position: relative;
     display: block;
 }
