@@ -10,6 +10,7 @@ import BoueyView from '../views/BoueyView.vue'
 import NiagaraView from '../views/NiagaraView.vue'
 import PittView from '../views/PittView.vue'
 import ZamboniView from '../views/ZamboniView.vue'
+import TestingLocationView from '../views/TestingLocationView.vue'
 
 const routes = [
   {
@@ -74,6 +75,11 @@ const routes = [
     path: '/zamboni',
     name: 'zamboni',
     component: ZamboniView
+  },
+  {
+    path: '/testing-location',
+    name: 'testing-location',
+    component: TestingLocationView
   }
 ]
 
