@@ -38,7 +38,7 @@ export default {
 
 <style scoped>
 .player{
-    font-size: 2em;
+    font-size: 4vh;
     font-weight: bold;
 }
 .team-1{
