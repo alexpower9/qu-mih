@@ -102,6 +102,7 @@ export default {
         onReset() {
             this.isDisabled = false;
             this.$emit('reset');
+            //will emit a reset
         }
     }
 }
