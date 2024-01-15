@@ -9,6 +9,7 @@ import FloodStrandView from '../views/FloodStrandView.vue'
 import BoueyView from '../views/BoueyView.vue'
 import NiagaraView from '../views/NiagaraView.vue'
 import PittView from '../views/PittView.vue'
+import ZamboniView from '../views/ZamboniView.vue'
 
 const routes = [
   {
@@ -68,6 +69,11 @@ const routes = [
     path: '/pitt',
     name: 'pitt',
     component: PittView
+  },
+  {
+    path: '/zamboni',
+    name: 'zamboni',
+    component: ZamboniView
   }
 ]
 

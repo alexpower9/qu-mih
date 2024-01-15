@@ -1,39 +1,57 @@
 <template>
-    <div class="button-container">
-        <VueCustomTooltip v-if="toolTipTextWin" :label="toolTipTextWin">
-            <button :disabled="isDisabled" class="play-win-button" @click="onPlayWin">
+    <div class="container">
+        <div class="button-container">
+            <VueCustomTooltip v-if="!isMobile() && toolTipTextWin" :label="toolTipTextWin">
+                <button :disabled="isDisabled" class="play-win-button" @click="onPlayWin">
+                    Play Win
+                </button>
+            </VueCustomTooltip>
+            <button :disabled="isDisabled" v-else class="play-win-button" @click="onPlayWin">
                 Play Win
             </button>
-        </VueCustomTooltip>
-        <button :disabled="isDisabled" v-else class="play-win-button" @click="onPlayWin">
-            Play Win
-        </button>
-        <VueCustomTooltip v-if="tooltipText" :label="tooltipText">
-            <button :disabled="isDisabledLoss" class="play-loss-button" @click="onPlayLoss">
+            <VueCustomTooltip v-if="!isMobile() && tooltipText" :label="tooltipText">
+                <button :disabled="isDisabledLoss" class="play-loss-button" @click="onPlayLoss">
+                    Play Loss
+                </button>
+            </VueCustomTooltip>
+            <button :disabled="isDisabledLoss" v-else class="play-loss-button" @click="onPlayLoss">
                 Play Loss
             </button>
-        </VueCustomTooltip>
-        <button :disabled="isDisabledLoss" v-else class="play-loss-button" @click="onPlayLoss">
-            Play Loss
-        </button>
-        <button class="reset-button" @click="onReset">
-            Reset
-        </button>
-    </div>
-    <div class="rink-background">
-        <img src="../assets/rink-background.png" alt="Rink" class="rink-image">
+            <button class="reset-button" @click="onReset">
+                Reset
+            </button>
+        </div>
+        <div class="rink-background">
+            <img src="../assets/rink-background.png" alt="Rink" class="rink-image" ref="rink-background-image">
+            <slot name="animations"></slot>
+        </div>
     </div>
 </template>
 
 <script>
 import { VueCustomTooltip } from '@adamdehaven/vue-custom-tooltip';
 
-    export default {
+export default {
     name: 'RinkWithButtons',
+    components: { VueCustomTooltip },
+    created() {
+        window.addEventListener('resize', this.onReset);
+    },
+    mounted() {
+        this.resizeObserver = new ResizeObserver(this.onResize)
+        this.resizeObserver.observe(this.$refs['rink-background-image'])
+        this.onResize()
+    },
+    unmounted() {
+        window.removeEventListener('resize', this.onReset);
+        this.resizeObserver = null
+    },
     data() {
         return {
             isDisabled: false,
-            isDisabledLoss: false
+            isDisabledLoss: false,
+            resizeObserver: null,
+            currentRinkSizeLabel: 'LARGE'
         }
     },
     props: {
@@ -46,8 +64,33 @@ import { VueCustomTooltip } from '@adamdehaven/vue-custom-tooltip';
             required: false
         }
     },
-    emits: ['reset', 'play-win', 'play-loss'],
+    emits: ['reset', 'play-win', 'play-loss', 'resize'],
     methods: {
+        isMobile() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+        },
+        onResize() {
+            this.onReset()
+            if (this.$refs['rink-background-image']) {                
+                const rinkWidth = this.$refs['rink-background-image'].clientWidth 
+                const rinkSizeLabel = this.getRinkSizeLabel(rinkWidth)
+                if (this.currentRinkSizeLabel !== rinkSizeLabel) {
+                    this.$emit('resize', rinkSizeLabel)
+                    this.currentRinkSizeLabel = rinkSizeLabel
+                }
+            }
+        },
+        getRinkSizeLabel(rinkWidth) {
+            if (rinkWidth === 1330) {
+                return 'LARGE'
+            }
+            else if (rinkWidth === 900) {
+                return 'MEDIUM'
+            }
+            else {
+                return 'SMALL'
+            }
+        },
         onPlayWin() {
             this.isDisabled = true;
             this.$emit('play-win');
@@ -60,23 +103,31 @@ import { VueCustomTooltip } from '@adamdehaven/vue-custom-tooltip';
             this.isDisabled = false;
             this.$emit('reset');
         }
-    },
-    components: { VueCustomTooltip }
+    }
 }
 </script>
 
 <style scoped>
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 .rink-background{
     display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; /* Full height of the viewport */
+    justify-content: center;
+    position: relative;    
 }
+
 .rink-image{
-    width: 70%;
     height: auto;
-    max-width: 100%;
+    width: 1330px;
+    position: relative;
+    display: block;
 }
+
 .play-win-button,.play-loss-button, .reset-button {
     background-color: #1a4386;
   border: none;
@@ -93,13 +144,25 @@ import { VueCustomTooltip } from '@adamdehaven/vue-custom-tooltip';
 .play-win-button:hover,.play-loss-button:hover, .reset-button:hover {
   background-color: #3468a4;
 }
+
 .button-container {
-  position: absolute;
-  top: 37px;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
-  justify-content: space-between;
-  width: 400px; /* Adjust as needed */
+  justify-content: center;
+  align-items: center;
+  column-gap: 10px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 1358px) {
+    .rink-image{
+        width: 900px;
+    }
+}
+
+@media screen and (max-width: 908px) {
+    .rink-image{
+        width: 400px;
+    }
 }
 </style>
