@@ -153,19 +153,25 @@ export default {
   justify-content: center;
   align-items: center;
   column-gap: 10px;
-  margin-bottom: 20px;
-  margin-top: 20px;
+  margin-bottom: 2vh;
+  margin-top: 4vh;
 }
 
-@media screen and (max-width: 1358px) {
+@media screen and (min-width: 1358px) {
     .rink-image{
-        width: 900px;
+        width: 70vw;
     }
 }
 
-@media screen and (max-width: 908px) {
+@media screen and (min-width: 908px) and (max-width: 1357px) {
     .rink-image{
-        width: 400px;
+        width: 60vw; /* Use vw instead of px */
+    }
+}
+
+@media screen and (max-width: 907px) {
+    .rink-image{
+        width: 50vw;
     }
 }
 </style>
