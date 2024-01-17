@@ -105,77 +105,77 @@ export default {
     },
     animateTeam1LW()
     {
-        //this will also animate the team 2 LD
+       //this will also animate the team 2 LD
         const start = { top: this.playerPositions.team1.LW.top, left: this.playerPositions.team1.LW.left };
         const control = { top: 65, left: 30 }; //change the shape of the curve
         const end = { top: this.playerPositions.team2.LD.top + 3, left: this.playerPositions.team2.LD.left + 1 };
-        let t = 0;
+        let startTime = null;
 
-        const animation = () => {
+        const animation = (timestamp) => {
+            if (!startTime) startTime = timestamp;
+            const progress = timestamp - startTime;
+            const t = progress / 1000; // Adjust the denominator to change the speed
+
             const top = Math.pow(1 - t, 2) * start.top + 2 * (1 - t) * t * control.top + Math.pow(t, 2) * end.top;
             const left = Math.pow(1 - t, 2) * start.left + 2 * (1 - t) * t * control.left + Math.pow(t, 2) * end.left;
-
 
             this.playerPositions.team1.LW.top = top;
             this.playerPositions.team1.LW.left = left;
 
-            t += 0.007; //will change the speed
-
             if (t <= 1) {
                 requestAnimationFrame(animation);
             }
         };
-        animation();
+        requestAnimationFrame(animation);
     },
-    animateTeam2RD()
-    {
+    animateTeam2RD() {
         //this will also animate the team 2 LD
         const start = { top: this.playerPositions.team2.RD.top, left: this.playerPositions.team2.RD.left };
         const control = { top: 65, left: 30 }; //change the shape of the curve
         const end = { top: this.playerPositions.team2.LD.top + 6, left: this.playerPositions.team2.LD.left + 3 };
-        let t = 0;
+        let startTime = null;
 
-        const animation = () => {
+        const animation = (timestamp) => {
+            if (!startTime) startTime = timestamp;
+            const progress = timestamp - startTime;
+            const t = progress / 1000; // Adjust the denominator to change the speed
+
             const top = Math.pow(1 - t, 2) * start.top + 2 * (1 - t) * t * control.top + Math.pow(t, 2) * end.top;
             const left = Math.pow(1 - t, 2) * start.left + 2 * (1 - t) * t * control.left + Math.pow(t, 2) * end.left;
-
 
             this.playerPositions.team2.RD.top = top;
             this.playerPositions.team2.RD.left = left;
 
-            t += 0.007; //will change the speed
-
             if (t <= 1) {
                 requestAnimationFrame(animation);
             }
         };
-        animation();
+        requestAnimationFrame(animation);
     },
-    animateTeam1RW()
-    {
+    animateTeam1RW() {
         const start = { top: this.playerPositions.team1.RW.top, left: this.playerPositions.team1.RW.left };
         const control = { top: 30, left: 30 }; //change the shape of the curve
         const end = { top: this.playerPositions.team1.C.top - 12, left: this.playerPositions.team1.C.left};
-        let t = 0;
+        let startTime = null;
 
-        const animation = () => {
+        const animation = (timestamp) => {
+            if (!startTime) startTime = timestamp;
+            const progress = timestamp - startTime;
+            const t = progress / 1000; // Adjust the denominator to change the speed
+
             const top = Math.pow(1 - t, 2) * start.top + 2 * (1 - t) * t * control.top + Math.pow(t, 2) * end.top;
             const left = Math.pow(1 - t, 2) * start.left + 2 * (1 - t) * t * control.left + Math.pow(t, 2) * end.left;
 
-
             this.playerPositions.team1.RW.top = top;
             this.playerPositions.team1.RW.left = left;
-
             this.playerPositions.team2.LD.top = top + 8;
-            this.playerPositions.team2.LD.left = left
-
-            t += 0.007; //will change the speed
+            this.playerPositions.team2.LD.left = left;
 
             if (t <= 1) {
                 requestAnimationFrame(animation);
             }
         };
-        animation();
+        requestAnimationFrame(animation);
     }
   }
 }
