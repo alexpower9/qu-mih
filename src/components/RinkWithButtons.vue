@@ -119,6 +119,7 @@ export default {
     margin-top: 10vh;
     position: fixed;
     width: 100vw;
+    /* background-color: #1a4386; */
 }
 
 .rink-background{
