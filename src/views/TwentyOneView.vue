@@ -102,102 +102,99 @@ export default {
 
             }, 400);
         },
-        animateTeam1RD()
-        {
+        animateTeam1RD() {
             this.puckWinAnimation = false;
             const start = { top: this.playerPositions.team1.RD.top, left: this.playerPositions.team1.RD.left };
             const control = { top: 40, left: 20 }; //change the shape of the curve
-            const end = { top: 60, left:  20};
-            let t = 0;
+            const end = { top: 60, left: 20 };
+            let startTime = null;
 
-            const animation = () => {
+            const animation = (timestamp) => {
+                if (!startTime) startTime = timestamp;
+                const progress = timestamp - startTime;
+                const t = progress / 1000; // Adjust the denominator to change the speed
+
                 const top = Math.pow(1 - t, 2) * start.top + 2 * (1 - t) * t * control.top + Math.pow(t, 2) * end.top;
                 const left = Math.pow(1 - t, 2) * start.left + 2 * (1 - t) * t * control.left + Math.pow(t, 2) * end.left;
-
 
                 this.playerPositions.team1.RD = { top: top, left: left };
                 this.puckLocation = { top: top, left: left };
 
-                t += 0.007; //will change the speed
-
                 if (t <= 1) {
                     requestAnimationFrame(animation);
                 }
             };
-            animation();
+            requestAnimationFrame(animation);
         },
-        animateTeam2RD()
-        {
+        animateTeam2RD() {
             const start = { top: this.playerPositions.team2.RD.top, left: this.playerPositions.team2.RD.left };
             const control = { top: 29, left: 27 }; //change the shape of the curve
             const end = { top: this.playerPositions.team1.LW.top + 3, left: this.playerPositions.team1.LW.left + 3 };
-            let t = 0;
+            let startTime = null;
 
-            const animation = () => {
+            const animation = (timestamp) => {
+                if (!startTime) startTime = timestamp;
+                const progress = timestamp - startTime;
+                const t = progress / 1000; // Adjust the denominator to change the speed
+
                 const top = Math.pow(1 - t, 2) * start.top + 2 * (1 - t) * t * control.top + Math.pow(t, 2) * end.top;
                 const left = Math.pow(1 - t, 2) * start.left + 2 * (1 - t) * t * control.left + Math.pow(t, 2) * end.left;
-
 
                 this.playerPositions.team2.RD.top = top;
                 this.playerPositions.team2.RD.left = left;
 
-                t += 0.007; //will change the speed
-
                 if (t <= 1) {
                     requestAnimationFrame(animation);
                 }
             };
-            animation();
+            requestAnimationFrame(animation);
         },
-        animateTeam1RW()
-        {
-            //this will also animate the team 2 LD
+        animateTeam1RW() {
             const start = { top: this.playerPositions.team1.RW.top, left: this.playerPositions.team1.RW.left };
             const control = { top: 60, left: 30 }; //change the shape of the curve
             const end = { top: this.playerPositions.team2.RW.top + 4, left: this.playerPositions.team2.RW.left + 2 };
-            let t = 0;
+            let startTime = null;
 
-            const animation = () => {
+            const animation = (timestamp) => {
+                if (!startTime) startTime = timestamp;
+                const progress = timestamp - startTime;
+                const t = progress / 1000; // Adjust the denominator to change the speed
+
                 const top = Math.pow(1 - t, 2) * start.top + 2 * (1 - t) * t * control.top + Math.pow(t, 2) * end.top;
                 const left = Math.pow(1 - t, 2) * start.left + 2 * (1 - t) * t * control.left + Math.pow(t, 2) * end.left;
 
-
                 this.playerPositions.team1.RW.top = top;
                 this.playerPositions.team1.RW.left = left;
-
-                this.playerPositions.team2.LD = { top: top + 7, left: left};
-
-                t += 0.007; //will change the speed
+                this.playerPositions.team2.LD = { top: top + 7, left: left };
 
                 if (t <= 1) {
                     requestAnimationFrame(animation);
                 }
             };
-            animation();
+            requestAnimationFrame(animation);
         },
-        animateTeam2LW()
-        {
-            //this will also animate the team 2 LD
+        animateTeam2LW() {
             const start = { top: this.playerPositions.team2.LW.top, left: this.playerPositions.team2.LW.left };
             const control = { top: 30, left: 30 }; //change the shape of the curve
-            const end = { top: 60, left: 23};
-            let t = 0;
+            const end = { top: 60, left: 23 };
+            let startTime = null;
 
-            const animation = () => {
+            const animation = (timestamp) => {
+                if (!startTime) startTime = timestamp;
+                const progress = timestamp - startTime;
+                const t = progress / 1000; // Adjust the denominator to change the speed
+
                 const top = Math.pow(1 - t, 2) * start.top + 2 * (1 - t) * t * control.top + Math.pow(t, 2) * end.top;
                 const left = Math.pow(1 - t, 2) * start.left + 2 * (1 - t) * t * control.left + Math.pow(t, 2) * end.left;
-
 
                 this.playerPositions.team2.LW.top = top;
                 this.playerPositions.team2.LW.left = left;
 
-                t += 0.007; //will change the speed
-
                 if (t <= 1) {
                     requestAnimationFrame(animation);
                 }
             };
-            animation();
+            requestAnimationFrame(animation);
         }
     }
 }
