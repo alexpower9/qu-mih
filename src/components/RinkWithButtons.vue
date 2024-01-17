@@ -117,6 +117,8 @@ export default {
     flex-direction: column;
     height: 85vh;
     margin-top: 10vh;
+    position: absolute;
+    width: 100vw;
 }
 
 .rink-background{
@@ -160,6 +162,6 @@ export default {
 
 .rink-image{
     width: 70vw;
-    height: 80vh;
+    height: auto;
 }
 </style>
