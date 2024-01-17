@@ -117,7 +117,7 @@ export default {
     flex-direction: column;
     height: 85vh;
     margin-top: 10vh;
-    position: absolute;
+    position: fixed;
     width: 100vw;
 }
 
