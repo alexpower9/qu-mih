@@ -106,30 +106,31 @@ export default {
           this.puckLocation = { top: 50.25, left: 31.14 };
           this.tooltipsActive = true;
         },
-        animateTeam2LD(){
+        animateTeam2LD() {
             const start = { top: this.playerPositions.team2.LD.top, left: this.playerPositions.team2.LD.left };
             const control = { top: 63, left: 30 }; //change the shape of the curve
             const end = { top: 56, left: 27 };
-            let t = 0;
+            let startTime = null;
 
-            const animation = () => {
+            const animation = (timestamp) => {
+                if (!startTime) startTime = timestamp;
+                const progress = timestamp - startTime;
+                const t = progress / 1000; // Adjust the denominator to change the speed
+
                 const top = Math.pow(1 - t, 2) * start.top + 2 * (1 - t) * t * control.top + Math.pow(t, 2) * end.top;
                 const left = Math.pow(1 - t, 2) * start.left + 2 * (1 - t) * t * control.left + Math.pow(t, 2) * end.left;
                 this.puckWinAnimation = false;
-
 
                 this.playerPositions.team2.LD.top = top;
                 this.playerPositions.team2.LD.left = left;
                 this.puckLocation.top = top;
                 this.puckLocation.left = left;
 
-                t += 0.006; //will change the speed
-
                 if (t <= 1) {
                     requestAnimationFrame(animation);
                 }
             };
-            animation();
+            requestAnimationFrame(animation);
         },
         onPlayWin(){
             this.isWin = true; //handles the LD animation, as they are different if the play is won or lost
